@@ -1,0 +1,29 @@
+html,
+body {
+  margin: 0;
+  background: #001219;
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.flex-general {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-general.jus-st {
+  justify-content: flex-start;
+}
+
+.flex-general.jus-en {
+  justify-content: flex-end;
+}
+
+.mg-top-100 {
+  margin-top: 100px;
+}

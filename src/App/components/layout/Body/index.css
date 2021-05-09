@@ -1,0 +1,9 @@
+.app_body-container {
+  height: calc(100vh - 250px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 0;
+  border-right: 0;
+}

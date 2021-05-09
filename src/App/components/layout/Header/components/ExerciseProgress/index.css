@@ -1,0 +1,56 @@
+.header_single-exercise-progress-container {
+  width: max-content;
+  height: 100%;
+  box-sizing: border-box;
+
+  margin-right: 10px;
+}
+
+.header_single-exercise-progress-bars-container {
+  padding: 7px 5px 7px 0;
+  border-right: 2px solid #6c757d;
+}
+
+.header_single-exercise-progress-container:last-child
+  > .header_single-exercise-progress-bars-container {
+  border-right: 0;
+}
+
+.header_single-exercise-progress-bar {
+  height: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: 1px solid #6c757d;
+}
+
+.header_single-exercise-progress-bar.large {
+  width: 100px;
+}
+
+.header_single-exercise-progress-bar.medium {
+  width: 50px;
+}
+
+.header_single-exercise-progress-bar.rep-completed {
+  background: #6c757d;
+}
+
+.header_single-exercise-progress-bar.set-in-progress {
+  border: 1px solid #ee9b00;
+}
+
+.header_single-exercise-progress-bar.set-in-progress.rep-completed {
+  background: #ee9b00;
+}
+
+.header_single-exercise-progress-bar.single-rep-progress {
+  width: 5px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.header_single-exercise-progress-bar.single-rep-progress.rep-complete {
+  border: 0;
+  background: #ee9b00;
+}

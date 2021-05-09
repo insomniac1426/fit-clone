@@ -1,0 +1,9 @@
+.header_remaining-time-value {
+  font-size: 32px;
+}
+
+.header_remaining-time-contianer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
