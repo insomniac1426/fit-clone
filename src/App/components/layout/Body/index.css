@@ -1,4 +1,9 @@
 .app_body-container {
+  display: grid;
+  grid-template-columns: repeat(3);
+  gap: 10px;
+  grid-auto-flow: column;
+  grid-auto-columns: 30% 40% 30%;
   height: calc(100vh - 250px);
   overflow-y: auto;
   box-sizing: border-box;
@@ -6,4 +11,9 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 0;
   border-right: 0;
+}
+
+
+.app_body_webcam_container {
+  background-color: blue;
 }

@@ -1,13 +1,21 @@
 import React from "react";
 import "./index.css";
 
-const RemainingTime = ({ time, subtext }) => {
-  return (
-    <div className="header_remaining-time-contianer">
-      <p className="header_remaining-time-value">{time}</p>
-      <p>{subtext}</p>
-    </div>
-  );
-};
+class RemainingTime extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div className="header_remaining-time-container">
+        <p className="header_remaining-time-value">{this.props.time}</p>
+        <p>{this.props.subtext}</p>
+      </div>
+    );
+  }
+}
+
 
 export default RemainingTime;

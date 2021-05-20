@@ -1,4 +1,4 @@
-# fit-clone
+# home-fitness
 
 ```
 npm install

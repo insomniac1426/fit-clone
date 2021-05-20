@@ -5,40 +5,46 @@ import HeartRate from "./components/HeartRate";
 
 import "./index.css";
 
-const Footer = () => {
-  const [exerciseData, setExerciseData] = useState({
-    reps: {
-      title: "REPS",
-      value: 8,
-      total: 12,
-    },
-    pace: {
-      title: "PACE",
-      value: 25,
-      units: "REPS / MIN",
-      subtitle: "Avg 25 - Max 27",
-    },
-    depth: {
-      title: "DEPTH",
-      value: 48,
-      units: "cm",
-      subtitle: "Avg 48cm - Max 50cm",
-    },
-    heartRate: {
-      title: "HEART RATE",
-      value: 120,
-      units: "BPM",
-      subtitle: "Zone 3: Max 50%",
-    },
-  });
+class Footer extends React.Component {
 
-  return (
-    <div className="app_footer_container flex-general">
-      <Reps {...(exerciseData.reps || {})} />
-      <Pace {...(exerciseData.pace || {})} />
-      <HeartRate {...(exerciseData.heartRate || {})} />
-    </div>
-  );
-};
+  constructor(props) {
+    super(props)
+    this.state = {
+      reps: {
+        title: "REPS",
+        value: 8,
+        total: 12,
+      },
+      pace: {
+        title: "PACE",
+        value: 25,
+        units: "REPS / MIN",
+        subtitle: "Avg 25 - Max 27",
+      },
+      depth: {
+        title: "DEPTH",
+        value: 48,
+        units: "cm",
+        subtitle: "Avg 48cm - Max 50cm",
+      },
+      heartRate: {
+        title: "HEART RATE",
+        value: 120,
+        units: "BPM",
+        subtitle: "Zone 3: Max 50%",
+      },
+    }
+  }
+
+  render() {
+    return (
+      <div className="app_footer_container flex-general">
+        <Reps {...(this.state.reps || {})} />
+        <Pace {...(this.state.pace || {})} />
+        <HeartRate {...(this.state.heartRate || {})} />
+      </div>
+    );
+  }
+}
 
 export default Footer;

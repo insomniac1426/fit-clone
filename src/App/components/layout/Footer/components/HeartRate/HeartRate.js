@@ -2,47 +2,62 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const HeartRate = (props) => {
-  return (
-    <div className="app_footer_element_container flex-general">
-      <div>
-        <p>{props.title}</p>
-        <div className="reps_value_container">
-          <FontAwesomeIcon
-            style={{ fontSize: "24px", position: "absolute", right: 0, top: "10px" }}
-            icon={faHeart}
-            color={"#ee9b00"}
-          />
-          <p style={{ fontSize: "48px" }}>{props.value}</p>
-          <p
-            style={{
-              fontSize: "15px",
-              position: "relative",
-              top: "35px",
-              opacity: 0.8,
-              paddingLeft: "5px",
-            }}
-          >{`${props.units}`}</p>
+class HeartRate extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div className="app_footer_element_container flex-general">
+        <div>
+          <p>{this.props.title}</p>
+          <div className="reps_value_container">
+            <FontAwesomeIcon
+              style={{ fontSize: "24px", position: "absolute", right: 0, top: "10px" }}
+              icon={faHeart}
+              color={"#ee9b00"}
+            />
+            <p style={{ fontSize: "48px" }}>{this.props.value}</p>
+            <p
+              style={{
+                fontSize: "15px",
+                position: "relative",
+                top: "35px",
+                opacity: 0.8,
+                paddingLeft: "5px",
+              }}
+            >{`${this.props.units}`}</p>
+          </div>
+          <p>{this.props.subtitle}</p>
         </div>
-        <p>{props.subtitle}</p>
+        <HeartRateHist heartRate={this.props.value} />
       </div>
-      <HeartRateHist heartRate={props.value} />
-    </div>
-  );
+    );
+  }
 };
 
 export default HeartRate;
 
-const HeartRateHist = (props) => {
-  const heartRateCellMeta = getHeartRateMeta(props.heartRate);
-  return (
-    <div className="footer_heart-rate-meter-container">
-      {Array.isArray(heartRateCellMeta) &&
-        heartRateCellMeta.map((cellData, idx) => {
-          return <div key={idx} className="footer_heart-rate-meter-cell" style={cellData}></div>;
-        })}
-    </div>
-  );
+class HeartRateHist extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const heartRateCellMeta = getHeartRateMeta(this.props.heartRate);
+    return (
+      <div className="footer_heart-rate-meter-container">
+        {Array.isArray(heartRateCellMeta) &&
+          heartRateCellMeta.map((cellData, idx) => {
+            return <div key={idx} className="footer_heart-rate-meter-cell" style={cellData}></div>;
+          })}
+      </div>
+    );
+  }
+
 };
 
 /**
