@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 class HeartRate extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -36,20 +35,19 @@ class HeartRate extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default HeartRate;
 
 class HeartRateHist extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     const heartRateCellMeta = getHeartRateMeta(this.props.heartRate);
     return (
-      <div className="footer_heart-rate-meter-container">
+      <div className="footer_heart-rate-meter-container flex-general flex-col">
         {Array.isArray(heartRateCellMeta) &&
           heartRateCellMeta.map((cellData, idx) => {
             return <div key={idx} className="footer_heart-rate-meter-cell" style={cellData}></div>;
@@ -57,8 +55,7 @@ class HeartRateHist extends React.Component {
       </div>
     );
   }
-
-};
+}
 
 /**
  * This method generates the dynamic style required for a heart rate cell

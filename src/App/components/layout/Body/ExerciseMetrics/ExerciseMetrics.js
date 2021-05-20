@@ -6,9 +6,8 @@ import HeartRate from "./components/HeartRate";
 import "./index.css";
 
 class Footer extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       reps: {
         title: "REPS",
@@ -33,12 +32,12 @@ class Footer extends React.Component {
         units: "BPM",
         subtitle: "Zone 3: Max 50%",
       },
-    }
+    };
   }
 
   render() {
     return (
-      <div className="app_footer_container flex-general">
+      <div className="app_footer_container flex-general flex-col">
         <Reps {...(this.state.reps || {})} />
         <Pace {...(this.state.pace || {})} />
         <HeartRate {...(this.state.heartRate || {})} />

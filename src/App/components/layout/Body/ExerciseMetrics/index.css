@@ -1,22 +1,15 @@
 .app_footer_container {
-  width: 100%;
-  height: 150px;
-  background: linear-gradient(
-    180deg,
-    #252525 0%,
-    rgba(0, 18, 25, 0) 83.85%,
-    rgba(0, 18, 25, 0) 100%
-  );
-  color: white;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  /* color: white; */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
   padding: 20px 20px 15px;
   box-sizing: border-box;
 }
 
 .app_footer_element_container {
-  height: 100%;
+  height: 200px;
   box-sizing: border-box;
 }
 
@@ -27,14 +20,14 @@
 }
 
 .footer_heart-rate-meter-container {
-  margin-left: 10px;
+  margin-left: 15px;
   height: 100%;
 }
 
 .footer_heart-rate-meter-cell {
   height: 19%;
-  width: 4px;
+  width: 8px;
   box-sizing: border-box;
   margin-bottom: 1px;
-  border-radius: 1px;
+  border-radius: 2px;
 }

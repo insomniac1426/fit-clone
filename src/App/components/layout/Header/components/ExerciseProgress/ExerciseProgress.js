@@ -4,9 +4,8 @@ import { faDumbbell, faRunning } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 
 class ExerciseProgress extends React.Component {
-  
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -22,18 +21,22 @@ class ExerciseProgress extends React.Component {
 export default ExerciseProgress;
 
 class SingleExerciseProgress extends React.Component {
-  
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
   }
 
   render() {
     return (
       <div className="header_single-exercise-progress-container">
         {!!this.props.imageUrl && <img src={this.props.imageUrl}></img>}
-        {!!this.props.type && <ExerciseIcon inProgress={this.props.inProgress} type={this.props.type} />}
+        {!!this.props.type && (
+          <ExerciseIcon inProgress={this.props.inProgress} type={this.props.type} />
+        )}
         <div className="header_single-exercise-progress-bars-container flex-general jus-st">
-          <SingleExerciseProgressBars perSetData={this.props.perSetData} inProgress={!!this.props.inProgress} />
+          <SingleExerciseProgressBars
+            perSetData={this.props.perSetData}
+            inProgress={!!this.props.inProgress}
+          />
         </div>
       </div>
     );
@@ -41,9 +44,8 @@ class SingleExerciseProgress extends React.Component {
 }
 
 class SingleExerciseProgressBars extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -51,9 +53,16 @@ class SingleExerciseProgressBars extends React.Component {
       Array.isArray(this.props.perSetData) &&
       this.props.perSetData.map(({ size, complete, reps, repsComplete }, index) => {
         if (!complete && this.props.inProgress) {
-          return <SingleExerciseIncompleteSet key={index} reps={reps} repsComplete={repsComplete} size={size} />;
+          return (
+            <SingleExerciseIncompleteSet
+              key={index}
+              reps={reps}
+              repsComplete={repsComplete}
+              size={size}
+            />
+          );
         }
-  
+
         return (
           <div
             key={index}
@@ -68,9 +77,8 @@ class SingleExerciseProgressBars extends React.Component {
 }
 
 class SingleExerciseIncompleteSet extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -93,9 +101,8 @@ class SingleExerciseIncompleteSet extends React.Component {
 }
 
 class ExerciseIcon extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -105,7 +112,7 @@ class ExerciseIcon extends React.Component {
           <FontAwesomeIcon
             style={{ fontSize: "24px" }}
             icon={faRunning}
-            color={this.props.inProgress ? "#ee9b00" : "#6c757d"}
+            color={this.props.inProgress ? "#ee9b00" : "#333"}
           />
         );
       case "weight-training":
@@ -113,7 +120,7 @@ class ExerciseIcon extends React.Component {
           <FontAwesomeIcon
             style={{ fontSize: "24px" }}
             icon={faDumbbell}
-            color={this.props.inProgress ? "#ee9b00" : "#6c757d"}
+            color={this.props.inProgress ? "#ee9b00" : "#333"}
           />
         );
     }
