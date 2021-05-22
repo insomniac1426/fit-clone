@@ -12,7 +12,6 @@ const ListAnimate = ({ animationCss, delay, initalDelay = 0, children, className
     );
   });
   return <div className={className}>{AnimatedChildren}</div>;
-  //   return null;
 };
 
 ListAnimate.Panel = styled.div`
