@@ -1,43 +1,42 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { EMElementContainer, EMElementTitle } from "../../styles";
+import styled from "styled-components";
+import { FlexBox } from "../../../../../UI/atoms/FlexBox";
+import { P } from "../../../../../UI/atoms/Typography/P";
 
-class HeartRate extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="app_footer_element_container flex-general">
-        <div>
-          <p>{this.props.title}</p>
-          <div className="reps_value_container">
-            <FontAwesomeIcon
-              style={{ fontSize: "24px", position: "absolute", right: 0, top: "10px" }}
-              icon={faHeart}
-              color={"#ee9b00"}
-            />
-            <p style={{ fontSize: "48px" }}>{this.props.value}</p>
-            <p
-              style={{
-                fontSize: "15px",
-                position: "relative",
-                top: "35px",
-                opacity: 0.8,
-                paddingLeft: "5px",
-              }}
-            >{`${this.props.units}`}</p>
-          </div>
-          <p>{this.props.subtitle}</p>
-        </div>
-        <HeartRateHist heartRate={this.props.value} />
-      </div>
-    );
-  }
-}
+const HeartRate = ({ title, subtitle, value, units }) => {
+  return (
+    <EMElementContainer flexDirection="column">
+      <EMElementTitle fontSize={0} fontWeight={3}>
+        {title}
+      </EMElementTitle>
+      <HeartRateValue units={units} value={value} />
+      <HRSubtitle fontSize={1}>{subtitle}</HRSubtitle>
+    </EMElementContainer>
+  );
+};
 
 export default HeartRate;
+
+const HRValue = styled(P)``;
+const HRUnit = styled(P)``;
+const HRSubtitle = styled(P)``;
+
+const HeartRateValue = ({ value, units }) => {
+  return (
+    <FlexBox position="relative" alignItems="flex-end">
+      <HRValue fontSize={8}>{value}</HRValue>
+      <FontAwesomeIcon
+        style={{ fontSize: "24px", position: "absolute", right: 0, top: "10px" }}
+        icon={faHeart}
+        color={"#ee9b00"}
+      />
+      <HRUnit fontSize={0}>{units}</HRUnit>
+    </FlexBox>
+  );
+};
 
 class HeartRateHist extends React.Component {
   constructor(props) {

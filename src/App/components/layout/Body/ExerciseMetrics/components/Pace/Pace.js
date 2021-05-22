@@ -1,32 +1,32 @@
 import React from "react";
+import { EMElementContainer, EMElementTitle } from "../../styles";
+import styled from "styled-components";
+import { FlexBox } from "../../../../../UI/atoms/FlexBox";
+import { P } from "../../../../../UI/atoms/Typography/P";
 
-class Pace extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div className="app_footer_element_container">
-        <p>{this.props.title}</p>
-        <div className="reps_value_container">
-          <p style={{ fontSize: "48px" }}>{this.props.value}</p>
-          <p
-            style={{
-              fontSize: "15px",
-              position: "relative",
-              top: "35px",
-              opacity: 0.8,
-              paddingLeft: "5px",
-            }}
-          >{`${this.props.units}`}</p>
-        </div>
-        <p>{this.props.subtitle}</p>
-      </div>
-    );
-  }
+const Pace = ({ title, subtitle, value, units }) => {
+  return (
+    <EMElementContainer flexDirection="column">
+      <EMElementTitle fontSize={0} fontWeight={3}>
+        {title}
+      </EMElementTitle>
+      <PaceValue units={units} value={value} />
+      <PSubtitle fontSize={1}>{subtitle}</PSubtitle>
+    </EMElementContainer>
+  );
 };
 
-
 export default Pace;
+
+const PValue = styled(P)``;
+const PUnit = styled(P)``;
+const PSubtitle = styled(P)``;
+
+const PaceValue = ({ value, units }) => {
+  return (
+    <FlexBox position="relative" alignItems="flex-end">
+      <PValue fontSize={8}>{value}</PValue>
+      <PUnit fontSize={0}>{units}</PUnit>
+    </FlexBox>
+  );
+};

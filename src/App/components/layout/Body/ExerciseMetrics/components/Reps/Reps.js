@@ -1,22 +1,30 @@
 import React from "react";
+import { EMElementContainer, EMElementTitle } from "../../styles";
+import styled from "styled-components";
+import { FlexBox } from "../../../../../UI/atoms/FlexBox";
+import { P } from "../../../../../UI/atoms/Typography/P";
 
-class Reps extends React.Component {
-
-  constructor(props) {
-    super(props) 
-  }
-
-  render() {
-    return (
-      <div className="app_footer_element_container">
-        <p>{this.props.title}</p>
-        <div className="reps_value_container">
-          <p style={{ fontSize: "100px", position: "relative", top: "-20px" }}>{this.props.value}</p>
-          <p style={{ fontSize: "48px" }}>{`/${this.props.total}`}</p>
-        </div>
-      </div>
-    );
-  }
-}
+const Reps = ({ title, total, value }) => {
+  return (
+    <EMElementContainer flexDirection="column">
+      <EMElementTitle fontSize={0} fontWeight={3}>
+        {title}
+      </EMElementTitle>
+      <RepsValue total={total} value={value} />
+    </EMElementContainer>
+  );
+};
 
 export default Reps;
+
+const RValue = styled(P)``;
+const RTotal = styled(P)``;
+
+const RepsValue = ({ value, total }) => {
+  return (
+    <FlexBox position="relative">
+      <RValue fontSize={8}>{value}</RValue>
+      <RTotal fontSize={5}>{`/${total}`}</RTotal>
+    </FlexBox>
+  );
+};

@@ -1,128 +1,68 @@
 import React from "react";
+import styled from "styled-components";
+import { FlexBox } from "../../../../UI/atoms/FlexBox";
+import { P } from "../../../../UI/atoms/Typography/P";
+import HAccordion from "./components/HAccordion";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDumbbell, faRunning } from "@fortawesome/free-solid-svg-icons";
-import "./index.css";
 
-class ExerciseProgress extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const ExerciseProgress = ({ exercises }) => {
+  if (!Array.isArray(exercises)) return null;
 
-  render() {
-    return (
-      Array.isArray(this.props.exercises) &&
-      this.props.exercises.map((exercise, index) => {
-        return <SingleExerciseProgress key={index} {...exercise} />;
-      })
-    );
-  }
-}
+  return (
+    <FlexBox>
+      <HAccordion>
+        {exercises.map(({ name, inProgress, type }, idx) => (
+          <HAccordion.Panel
+            idx={idx}
+            isOpen={!!inProgress}
+            textComponent={<ExerciseProgressPanelIcon name={name} idx={idx} icon={getIcon(type)} />}
+            titleComponent={<ExerciseProgressPanelTitle name={name} />}
+          ></HAccordion.Panel>
+        ))}
+      </HAccordion>
+    </FlexBox>
+  );
+};
 
 export default ExerciseProgress;
 
-class SingleExerciseProgress extends React.Component {
-  constructor(props) {
-    super(props);
+const StyledPanelTitle = styled(P)`
+  position: absolute;
+  top: -10px;
+  left: -15px;
+`;
+
+const ExerciseProgressPanelTitle = ({ name }) => {
+  return (
+    <StyledPanelTitle fontWeight={3} p={10} color="black">
+      {name}
+    </StyledPanelTitle>
+  );
+};
+
+const ExerciseProgressPanelIcon = ({ text, icon, idx }) => (
+  <P
+    isFlex
+    bg={`primary.${2 * idx}`}
+    justifyContent="center"
+    alignItems="center"
+    color="white"
+    fontWeight={3}
+    fontSize={7}
+    height="70px"
+  >
+    {!!icon && <FontAwesomeIcon style={{ fontSize: "32px" }} icon={icon} color="white" />}
+    {!!text && text.slice(0, 1)}
+  </P>
+);
+
+const getIcon = (type) => {
+  switch (type) {
+    case "cardio":
+      return faRunning;
+    case "weight-training":
+      return faDumbbell;
   }
-
-  render() {
-    return (
-      <div className="header_single-exercise-progress-container">
-        {!!this.props.imageUrl && <img src={this.props.imageUrl}></img>}
-        {!!this.props.type && (
-          <ExerciseIcon inProgress={this.props.inProgress} type={this.props.type} />
-        )}
-        <div className="header_single-exercise-progress-bars-container flex-general jus-st">
-          <SingleExerciseProgressBars
-            perSetData={this.props.perSetData}
-            inProgress={!!this.props.inProgress}
-          />
-        </div>
-      </div>
-    );
-  }
-}
-
-class SingleExerciseProgressBars extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      Array.isArray(this.props.perSetData) &&
-      this.props.perSetData.map(({ size, complete, reps, repsComplete }, index) => {
-        if (!complete && this.props.inProgress) {
-          return (
-            <SingleExerciseIncompleteSet
-              key={index}
-              reps={reps}
-              repsComplete={repsComplete}
-              size={size}
-            />
-          );
-        }
-
-        return (
-          <div
-            key={index}
-            className={`header_single-exercise-progress-bar ${
-              this.props.inProgress && "set-in-progress"
-            } ${size} ${complete && "rep-completed"}`}
-          ></div>
-        );
-      })
-    );
-  }
-}
-
-class SingleExerciseIncompleteSet extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const repElements = [];
-
-    for (let rep = 0; rep < this.props.reps; rep++) {
-      const isCurrentRepDone = this.props.repsComplete > rep;
-      repElements.push(
-        <div
-          key={rep}
-          className={`header_single-exercise-progress-bar single-rep-progress ${
-            isCurrentRepDone && "rep-complete"
-          }`}
-        ></div>
-      );
-    }
-
-    return repElements;
-  }
-}
-
-class ExerciseIcon extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    switch (this.props.type) {
-      case "cardio":
-        return (
-          <FontAwesomeIcon
-            style={{ fontSize: "24px" }}
-            icon={faRunning}
-            color={this.props.inProgress ? "#ee9b00" : "#333"}
-          />
-        );
-      case "weight-training":
-        return (
-          <FontAwesomeIcon
-            style={{ fontSize: "24px" }}
-            icon={faDumbbell}
-            color={this.props.inProgress ? "#ee9b00" : "#333"}
-          />
-        );
-    }
-  }
-}
+};
