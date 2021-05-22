@@ -7,6 +7,7 @@ import WebcamCapture from "./WebcamCapture";
 const Body = () => {
   return (
     <BodyContainer>
+      {/* Use Timer as and when necessary */}
       <Timer />
       {/* <WebcamCapture /> */}
       <ExerciseMetrics />

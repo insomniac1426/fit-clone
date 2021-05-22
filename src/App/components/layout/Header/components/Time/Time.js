@@ -23,13 +23,7 @@ const Time = () => {
   }, []);
 
   return (
-    <TimeText
-      fontWeight={4}
-      fontSize={6}
-      color="primary.8"
-      alignItems="center"
-      justifyContent="center"
-    >
+    <TimeText fontWeight={4} fontSize={6} color="black" alignItems="center" justifyContent="center">
       {currentTime}
     </TimeText>
   );

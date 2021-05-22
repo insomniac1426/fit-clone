@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { FlexBox } from "../../../../../UI/atoms/FlexBox";
 import { P } from "../../../../../UI/atoms/Typography/P";
 
-const Reps = ({ title, total, value }) => {
+const Reps = ({ title, total, value, idx }) => {
   return (
-    <EMElementContainer flexDirection="column">
+    <EMElementContainer bg={`blue.${5 - idx}`} flexDirection="column">
       <EMElementTitle fontSize={0} fontWeight={3}>
         {title}
       </EMElementTitle>

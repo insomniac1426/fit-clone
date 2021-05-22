@@ -3,15 +3,17 @@ import Reps from "./components/Reps";
 import Pace from "./components/Pace";
 import HeartRate from "./components/HeartRate";
 import { EMContainer } from "./styles";
+import { css } from "styled-components";
+import { listAnmiateFlyIn } from "../../../UI/animations/flyIn";
 
 const Footer = () => {
   const [metricsData, setMetricsData] = useState(dummyMetrics);
 
   return (
-    <EMContainer>
-      <Reps {...(metricsData.reps || {})} />
-      <Pace {...(metricsData.pace || {})} />
-      <HeartRate {...(metricsData.heartRate || {})} />
+    <EMContainer delay={0.4} animationCss={listAnmiateFlyIn}>
+      <Reps idx={0} {...(metricsData.reps || {})} />
+      <Pace idx={1} {...(metricsData.pace || {})} />
+      <HeartRate idx={2} {...(metricsData.heartRate || {})} />
     </EMContainer>
   );
 };
