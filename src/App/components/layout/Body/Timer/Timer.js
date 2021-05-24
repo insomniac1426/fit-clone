@@ -7,7 +7,7 @@ const Timer = ({ animationTime = 30000 }) => {
   const { time } = useStopwatch({ animationTime });
 
   return (
-    <>
+    <div>
       <AnimatedProgressRing
         radius={50}
         strokeWidth={10}
@@ -17,7 +17,7 @@ const Timer = ({ animationTime = 30000 }) => {
         totalTime={animationTime} // in ms
       />
       <P>{time}</P>
-    </>
+    </div>
   );
 };
 

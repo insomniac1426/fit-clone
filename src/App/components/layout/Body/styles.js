@@ -6,4 +6,5 @@ export const BodyContainer = styled(FlexBox)`
   box-sizing: border-box;
   padding: 10px;
   height: calc(100vh - 130px);
+  justify-content: space-between;
 `;

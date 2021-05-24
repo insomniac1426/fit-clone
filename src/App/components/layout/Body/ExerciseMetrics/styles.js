@@ -6,9 +6,6 @@ import ListAnimate from "../../../UI/animations/ListAnimate";
 
 export const EMContainer = styled(ListAnimate)`
   flex-direction: column;
-  position: absolute;
-  right: 0;
-  top: 0;
   box-sizing: border-box;
   padding: 10px;
   height: 100%;
@@ -19,7 +16,6 @@ export const EMElementContainer = styled(FlexBox)`
   width: 100%;
   margin-bottom: 20px;
   padding: 10px;
-  border: 1px solid;
   border-radius: 4px;
   color: white;
 `;

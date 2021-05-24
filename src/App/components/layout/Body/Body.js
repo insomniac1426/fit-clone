@@ -9,7 +9,7 @@ const Body = () => {
     <BodyContainer>
       {/* Use Timer as and when necessary */}
       <Timer />
-      {/* <WebcamCapture /> */}
+      <WebcamCapture />
       <ExerciseMetrics />
     </BodyContainer>
   );
