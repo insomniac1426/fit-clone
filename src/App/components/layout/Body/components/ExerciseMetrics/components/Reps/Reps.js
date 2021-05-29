@@ -1,8 +1,8 @@
 import React from "react";
 import { EMElementContainer, EMElementTitle } from "../../styles";
 import styled from "styled-components";
-import { FlexBox } from "../../../../../UI/atoms/FlexBox";
-import { P } from "../../../../../UI/atoms/Typography/P";
+import { FlexBox } from "UI/atoms/FlexBox";
+import { P } from "UI/atoms/Typography/P";
 
 const Reps = ({ title, total, value, idx }) => {
   return (

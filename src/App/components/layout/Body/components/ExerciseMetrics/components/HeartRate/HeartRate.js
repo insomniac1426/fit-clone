@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { EMElementContainer, EMElementTitle } from "../../styles";
 import styled from "styled-components";
-import { FlexBox } from "../../../../../UI/atoms/FlexBox";
-import { P } from "../../../../../UI/atoms/Typography/P";
+import { FlexBox } from "UI/atoms/FlexBox";
+import { P } from "UI/atoms/Typography/P";
+import { EMElementContainer, EMElementTitle } from "../../styles";
 
 const HeartRate = ({ title, subtitle, value, units, idx }) => {
   return (

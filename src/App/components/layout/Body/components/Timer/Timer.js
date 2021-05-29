@@ -1,7 +1,7 @@
-import React, { memo, useState, useEffect } from "react";
-import AnimatedProgressRing from "../../../UI/organisms/AnimatedProgressRing";
-import { useStopwatch } from "../../../common/hooks/useStopwatch";
-import { P } from "../../../UI/atoms/Typography/P";
+import React, { memo } from "react";
+import AnimatedProgressRing from "UI/organisms/AnimatedProgressRing";
+import { P } from "UI/atoms/Typography/P";
+import { useStopwatch } from "Hooks/useStopwatch";
 
 const Timer = ({ animationTime = 30000 }) => {
   const { time } = useStopwatch({ animationTime });

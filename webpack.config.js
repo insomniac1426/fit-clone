@@ -1,5 +1,6 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
@@ -26,9 +27,19 @@ module.exports = {
       template: "./src/index.html",
       filename: "index.html",
     }),
+    new Dotenv(),
   ],
+  resolve: {
+    alias: {
+      UI: path.resolve(__dirname, "src/App/components/UI"),
+      API: path.resolve(__dirname, "src/App/components/api"),
+      Utils: path.resolve(__dirname, "src/App/components/common/utils"),
+      Hooks: path.resolve(__dirname, "src/App/components/common/hooks"),
+      Constants: path.resolve(__dirname, "src/App/components/common/constants"),
+    },
+  },
   devServer: {
     port: 9000,
-    https: true,
+    // https: true,
   },
 };

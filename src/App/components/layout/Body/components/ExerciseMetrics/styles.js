@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import flyIn from "../../../UI/animations/flyIn";
-import { FlexBox } from "../../../UI/atoms/FlexBox";
-import { P } from "../../../UI/atoms/Typography/P";
-import ListAnimate from "../../../UI/animations/ListAnimate";
+import flyIn from "UI/animations/flyIn";
+import { FlexBox } from "UI/atoms/FlexBox";
+import { P } from "UI/atoms/Typography/P";
+import ListAnimate from "UI/animations/ListAnimate";
 
 export const EMContainer = styled(ListAnimate)`
   flex-direction: column;
