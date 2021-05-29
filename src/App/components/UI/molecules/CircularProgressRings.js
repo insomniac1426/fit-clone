@@ -40,6 +40,7 @@ const ProgressRing = ({
 };
 
 const StyledCircle = styled.circle`
+  stroke-linecap: round;
   stroke-dasharray: ${({ circum }) => `${circum} ${circum}`};
   stroke-dashoffset: ${({ progressLength }) => progressLength};
   transition: ${({ transitionTime }) => `stroke-dashoffset ${transitionTime}s linear`};

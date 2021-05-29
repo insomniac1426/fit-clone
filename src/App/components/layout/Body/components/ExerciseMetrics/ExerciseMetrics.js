@@ -1,10 +1,9 @@
 import React, { useState } from "react";
+import { listAnmiateFlyIn } from "UI/animations/flyIn";
 import Reps from "./components/Reps";
 import Pace from "./components/Pace";
 import HeartRate from "./components/HeartRate";
 import { EMContainer } from "./styles";
-import { css } from "styled-components";
-import { listAnmiateFlyIn } from "../../../UI/animations/flyIn";
 
 const Footer = () => {
   const [metricsData, setMetricsData] = useState(dummyMetrics);

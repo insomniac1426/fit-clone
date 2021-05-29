@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { Box } from "../../../../../UI/atoms/Box";
-import { FlexBox } from "../../../../../UI/atoms/FlexBox";
-import { P } from "../../../../../UI/atoms/Typography/P";
+import { Box } from "UI/atoms/Box";
+import { FlexBox } from "UI/atoms/FlexBox";
+import { P } from "UI/atoms/Typography/P";
 
 const HAccordion = ({ children }) => {
   /**

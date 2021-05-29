@@ -4,20 +4,19 @@ import Header from "./components/layout/Header";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./Theme";
 import { GlobalStyle } from "./components/UI/GlobalStyles";
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "Utils/ReactQuery";
 
-  render() {
-    return (
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Header />
         <Body />
-        <GlobalStyle />
       </ThemeProvider>
-    );
-  }
-}
+    </QueryClientProvider>
+  );
+};
 
 export default App;
