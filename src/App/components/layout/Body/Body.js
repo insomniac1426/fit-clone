@@ -17,7 +17,7 @@ const Body = () => {
     useEffect( async () => {
     const interval = setInterval(() => {
     getData()
-    }, 500);
+    }, 1000);
 
     return () => {
     clearInterval(interval)
