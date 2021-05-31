@@ -7,41 +7,30 @@ import WebcamCapture from "./WebcamCapture";
 
 const HOME_FITNESS_URL = 'http://localhost:8000/';
 
-function BodyData() {
-  const [bodyData, setBodyData] = useState({bodyData: {}, isFetching: false});
-
-   const getData = async () => {
-        const response = await axios.get(HOME_FITNESS_URL);
-        setBodyData({bodyData: response.data, isFetching: false});
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-    getData();
-  }, 100);
-
-  return () => {
-    console.log(`clearing interval`);
-    clearInterval(interval);
-  };
-  }, []);
-
-    return bodyData
-//  return <p>
-//    {JSON. stringify(bodyData, null, 2) }
-//  </p>
-
-}
-
-
 const Body = () => {
+    const [keypoints, setKeypoints] = useState({bodyData: {}, isFetching: true});
+     const getData = async () => {
+        const response = await axios.get(HOME_FITNESS_URL);
+        setKeypoints({bodyData: response.data, isFetching: false});
+    }
+
+    useEffect( async () => {
+    const interval = setInterval(() => {
+    getData()
+    }, 500);
+
+    return () => {
+    clearInterval(interval)
+    };
+    }, []);
+
+
   return (
     <BodyContainer>
-      <Timer key="2" />
-      <WebcamCapture key="3" />
-      <ExerciseMetrics key="4" />
+      <Timer />
+      <WebcamCapture />
+      <ExerciseMetrics {...keypoints} />
     </BodyContainer>
-    
   );
 };
 
