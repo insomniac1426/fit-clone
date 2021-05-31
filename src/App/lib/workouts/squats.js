@@ -33,24 +33,26 @@ export default class SquatCounter extends RepCounter {
       // console.log(-lknee[BODY_PART_DETAILS.POSITION_Y_IMAGE], - rknee[BODY_PART_DETAILS.POSITION_Y_IMAGE], lhip[BODY_PART_DETAILS.POSITION_Y_IMAGE], rhip[BODY_PART_DETAILS.POSITION_Y_IMAGE])
       //  console.log("SCORE2", this.score)
     }
-    console.log("SCORE2", this.score)
+    // console.log("SCORE2", this.score)
     return squat_score;
   };
 
   getState = (keypoints) => {
     this.score = this.squatScore(keypoints);
-    console.log("SCORE", this.score)
-    if (this.score < 0) {
-      console.log(this.STATES.UP)
+    // console.log("SCORE", this.score)
+    let rand = Math.floor(Math.random() * 10);
+    if(rand % 2 === 0) {
+      // if (this.score < 0) {
+      // console.log(this.STATES.UP)
       return this.STATES.UP;
     }
-
-    if (this.score > 0) {
-       console.log(this.STATES.DOWN)
+    else {
+    // if (this.score > 0) {
+      //  console.log(this.STATES.DOWN)
 
       return this.STATES.DOWN;
     }
-    this.score = (this.score + 5) / 5;
-    return this.STATES.NONE;
+    // this.score = (this.score + 5) / 5;
+    // return this.lastState;
   };
 }
