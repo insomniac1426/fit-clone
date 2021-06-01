@@ -19,17 +19,17 @@ export default class RepCounter {
   };
 
   update = (keypoints) => {
+    console.log({ keypoints });
+
     this.isIncrement = false;
-    console.log("LastState", this.lastState)
     this.state = this.getState(keypoints);
-    console.log("Received state", this.state)
+
     if (this.state === this.STATES.UP && this.lastState === this.STATES.DOWN) {
-      console.log("INCREMENTING...")
+      console.log("INCREMENTING...", this.state);
       this.incrementRep();
       this.isIncrement = true;
     }
-      console.log("QWERTY1", this.reps, this.state, this.lastState)
-      this.lastState = this.state;
-      console.log("QWERTY2", this.reps, this.state, this.lastState)
-    }
+
+    this.lastState = this.state;
   };
+}

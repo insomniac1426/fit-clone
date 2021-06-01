@@ -1,25 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Reps from "./components/Reps";
 import Pace from "./components/Pace";
 import HeartRate from "./components/HeartRate";
 import { EMContainer } from "./styles";
 import { css } from "styled-components";
 import { listAnmiateFlyIn } from "../../../UI/animations/flyIn";
-import SquatCounter from "../../../../lib/workouts/squats"
+import SquatCounter from "../../../../lib/workouts/squats";
+import { useUpdateReps } from "./hooks/useUpdateReps";
 
-const ExerciseMetrics = (keypoints) => {
+const updateRepsInMetrics = (oldState, updatedReps) => {
+  // creates a new object for state update.
+  // spread syntax (...) helps creating a new object with the same key values.
+  return {
+    ...oldState,
+    reps: {
+      ...oldState.reps,
+      value: updatedReps,
+    },
+  };
+};
+
+const ExerciseMetrics = ({ bodyData, isFetching = false, exerciseName } = {}) => {
   const [metricsData, setMetricsData] = useState(dummyMetrics);
-  const repcounter = new SquatCounter()
 
-  useEffect( () => {
-//      console.log("QWERTY0", keypoints)
-      if(typeof keypoints["bodyData"] != "undefined" && !keypoints["isFetching"]) {
-      repcounter.update(keypoints["bodyData"])
-      dummyMetrics["reps"]["value"] = repcounter.reps
-      setMetricsData(dummyMetrics)
-      }
-      // console.log(metricsData)
-  }, [keypoints])
+  /**
+   * Custom hook that will take care of instantiating the appropriate repCounter
+   * using the RepCounterFactory and the "exerciseName" that you pass
+   * ---
+   * Custom hooks are used to share | modularize the stateful logic of component/
+   * This helps with reusability and also keeps the component lean enough to
+   * support future maintenance.
+   */
+  useUpdateReps({
+    exerciseName,
+    bodyData,
+    isFetchingBodyData: isFetching,
+    repUpdater: (reps) => {
+      setMetricsData((oldState) => updateRepsInMetrics(oldState, reps));
+    },
+  });
 
   return (
     <EMContainer delay={0.4} animationCss={listAnmiateFlyIn}>
@@ -35,7 +54,7 @@ export default ExerciseMetrics;
 const dummyMetrics = {
   reps: {
     title: "REPS",
-    value: 8,
+    value: 0,
     total: 12,
   },
   pace: {
