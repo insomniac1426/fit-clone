@@ -10,12 +10,25 @@ export const useUpdateReps = ({ exerciseName, bodyData, isFetchingBodyData, repU
   const repCounterRef = useRef(RepCounterFactory.getRepCounter(exerciseName));
 
   useEffect(() => {
+    repCounterRef.current = RepCounterFactory.getRepCounter(exerciseName);
+  }, [exerciseName]);
+
+  const repUpdaterFn = useRef(repUpdater);
+
+  useEffect(() => {
+    repUpdaterFn.current = repUpdater;
+  }, [repUpdater]);
+
+  useEffect(() => {
     if (bodyData && !isFetchingBodyData) {
       const repCounterInstance = repCounterRef.current;
 
       // Updates the repcount of the static instance
       repCounterInstance.update(bodyData);
-      repUpdater(repCounterInstance.reps);
+
+      if (typeof repUpdaterFn.current === "function") {
+        repUpdaterFn.current(repCounterInstance.reps);
+      }
     }
   }, [bodyData, isFetchingBodyData]);
 };
