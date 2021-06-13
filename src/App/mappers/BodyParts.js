@@ -1,4 +1,4 @@
-const BODY_PARTS = {
+const BODY_PART = {
     PELVIS : "PELVIS",
     SPINE_NAVAL : "SPINE_NAVAL",
     SPINE_CHEST : "SPINE_CHEST",
@@ -33,4 +33,4 @@ const BODY_PARTS = {
     EAR_RIGHT : "EAR_RIGHT"
 };
 
-export default BODY_PARTS;
+export default BODY_PART;
