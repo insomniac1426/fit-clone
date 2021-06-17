@@ -2,8 +2,15 @@ import RepCounter from "../repcounter";
 import BODY_PART from "../../mappers/BodyParts";
 import BODY_PART_DETAILS from "../../mappers/BodyPartDetails";
 import {isBetween, distance, isPartMissing}  from "../util"
+import WorkoutDetails from "./classes/workoutDetails";
 
 export default class PushUpCounter extends RepCounter {
+
+    constructor(rep_limit) {
+      super(rep_limit, 0)
+      this.title = "PUSH UPS"
+    }
+
     pushUpScore = (keypoints) => {
       let relax_threshold = 0.01;
       let score = 0;

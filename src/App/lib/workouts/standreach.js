@@ -2,8 +2,15 @@ import RepCounter from "../repcounter";
 import BODY_PART from "../../mappers/BodyParts";
 import BODY_PART_DETAILS from "../../mappers/BodyPartDetails";
 import {angleBetween, isPartMissing}  from "../util"
+import WorkoutDetails from "./classes/workoutDetails"
 
 export default class StandReachCounter extends RepCounter {
+
+  constructor(timer_limit) {
+    super(0, timer_limit)
+    this.title = "Stand Reach"
+  }
+
     getScore = (keypoints) => {
       let score = 0;
       let KPS = keypoints;

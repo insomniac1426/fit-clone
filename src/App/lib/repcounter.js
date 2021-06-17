@@ -1,7 +1,7 @@
+import WorkoutDetails from "./workouts/classes/workoutDetails"
+
 export default class RepCounter {
-  constructor() {
-    this.reps = 0;
-    this.timer = 0;
+  constructor(rep_limit, timer_limit) {
     this.score = 0;
     this.isIncrement = false;
     this.STATES = {
@@ -12,10 +12,11 @@ export default class RepCounter {
 
     this.lastState = this.STATES.NONE;
     this.state = this.STATES.NONE;
+    this.workoutDetails = new WorkoutDetails(rep_limit, timer_limit)
   }
 
   incrementRep = () => {
-    this.reps += 1;
+    this.workoutDetails.reps.value += 1;
   };
 
   update = (keypoints) => {

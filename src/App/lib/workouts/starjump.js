@@ -1,8 +1,15 @@
 import RepCounter from "../repcounter";
 import BODY_PART from "../../mappers/BodyParts";
 import {angleBetween, isPartMissing}  from "../util"
+import WorkoutDetails from "./classes/workoutDetails"
 
 export default class StarJumpCounter extends RepCounter {
+
+  constructor(rep_limit) {
+    super(rep_limit, 0)
+    this.title = "Star Jump"
+  }
+
     getScore = (keypoints) => {
       let score = 0.0;
       let KPS = keypoints;

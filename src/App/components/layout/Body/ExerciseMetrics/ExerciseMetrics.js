@@ -5,25 +5,12 @@ import HeartRate from "./components/HeartRate";
 import { EMContainer } from "./styles";
 import { css } from "styled-components";
 import { listAnmiateFlyIn } from "../../../UI/animations/flyIn";
-import SquatCounter from "../../../../lib/workouts/squats";
 import { useUpdateReps } from "./hooks/useUpdateReps";
 
-const updateRepsInMetrics = (oldState, updatedReps) => {
-  // creates a new object for state update.
-  // spread syntax (...) helps creating a new object with the same key values.
-  return {
-    ...oldState,
-    reps: {
-      ...oldState.reps,
-      value: updatedReps,
-    },
-  };
-};
 
-const ExerciseMetrics = ({ bodyData, isFetching = false, exerciseName } = {}) => {
-  const [metricsData, setMetricsData] = useState(dummyMetrics);
+const ExerciseMetrics = ({ bodyData, isFetching = false, workouts } = {}) => {
 
-  /**
+  /** 
    * Custom hook that will take care of instantiating the appropriate repCounter
    * using the RepCounterFactory and the "exerciseName" that you pass
    * ---
@@ -32,47 +19,27 @@ const ExerciseMetrics = ({ bodyData, isFetching = false, exerciseName } = {}) =>
    * support future maintenance.
    */
   useUpdateReps({
-    exerciseName,
     bodyData,
     isFetchingBodyData: isFetching,
-    repUpdater: (reps) => {
-      setMetricsData((oldState) => updateRepsInMetrics(oldState, reps));
-    },
+    workouts
   });
 
   return (
     <EMContainer delay={0.4} animationCss={listAnmiateFlyIn}>
-      <Reps idx={0} {...(metricsData.reps || {})} />
-      <Pace idx={1} {...(metricsData.pace || {})} />
-      <HeartRate idx={2} {...(metricsData.heartRate || {})} />
+      <Reps idx={0} {...(metricsData.workoutList[metricsData.currentWorkout].workoutDetails.reps || {})} />
+      <Pace idx={1} {...(metricsData.workoutList[metricsData.currentWorkout].workoutDetails.pace || {})} />
+      <HeartRate idx={2} {...(heartrate || {})} />
+      <div> {metricsData.workoutList[metricsData.currentWorkout].title} </div>
     </EMContainer>
+    
   );
 };
 
 export default ExerciseMetrics;
 
-const dummyMetrics = {
-  reps: {
-    title: "REPS",
-    value: 0,
-    total: 12,
-  },
-  pace: {
-    title: "PACE",
-    value: 25,
-    units: "REPS / MIN",
-    subtitle: "Avg 25 - Max 27",
-  },
-  depth: {
-    title: "DEPTH",
-    value: 48,
-    units: "cm",
-    subtitle: "Avg 48cm - Max 50cm",
-  },
-  heartRate: {
-    title: "HEART RATE",
-    value: 120,
-    units: "BPM",
-    subtitle: "Zone 3: Max 50%",
-  },
-};
+const heartrate = {
+  title: "HEART RATE",
+  value: 120,
+  units: "BPM",
+  subtitle: "Zone 3: Max 50%"
+}

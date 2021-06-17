@@ -4,13 +4,13 @@ import styled from "styled-components";
 import { FlexBox } from "../../../../../UI/atoms/FlexBox";
 import { P } from "../../../../../UI/atoms/Typography/P";
 
-const Pace = ({ title, subtitle, value, units, idx }) => {
+const Pace = ({ title, subtitle, value, unit, idx }) => {
   return (
     <EMElementContainer bg={`blue.${5 - idx}`} flexDirection="column">
       <EMElementTitle fontSize={0} fontWeight={3}>
         {title}
       </EMElementTitle>
-      <PaceValue units={units} value={value} />
+      <PaceValue unit={unit} value={value} />
       <PSubtitle fontSize={1}>{subtitle}</PSubtitle>
     </EMElementContainer>
   );
@@ -22,11 +22,11 @@ const PValue = styled(P)``;
 const PUnit = styled(P)``;
 const PSubtitle = styled(P)``;
 
-const PaceValue = ({ value, units }) => {
+const PaceValue = ({ value, unit }) => {
   return (
     <FlexBox position="relative" alignItems="flex-end">
       <PValue fontSize={8}>{value}</PValue>
-      <PUnit fontSize={0}>{units}</PUnit>
+      <PUnit fontSize={0}>{unit}</PUnit>
     </FlexBox>
   );
 };

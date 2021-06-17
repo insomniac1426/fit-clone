@@ -1,33 +1,24 @@
 import { useRef, useEffect } from "react";
-import RepCounterFactory from "../../../../../lib/factories/RepCounterFactory";
 
-export const useUpdateReps = ({ exerciseName, bodyData, isFetchingBodyData, repUpdater }) => {
+export const useUpdateReps = ({ bodyData, isFetchingBodyData, workouts }) => {
   /**
    * Adding repCounterInRef helps creating just one object of any exercise
    * depending on the exercise name, in the whole render cycle of the component
    * that is going to use this.
    */
-  const repCounterRef = useRef(RepCounterFactory.getRepCounter(exerciseName));
+  const repCounterRef = useRef(workouts);
 
   useEffect(() => {
-    repCounterRef.current = RepCounterFactory.getRepCounter(exerciseName);
-  }, [exerciseName]);
-
-  const repUpdaterFn = useRef(repUpdater);
-
-  useEffect(() => {
-    repUpdaterFn.current = repUpdater;
-  }, [repUpdater]);
+    repCounterRef.current = workouts;
+  }, [workouts]);
 
   useEffect(() => {
     if (bodyData && !isFetchingBodyData) {
-      const repCounterInstance = repCounterRef.current;
+      const repCounterInstance = repCounterRef.current.workoutList[repCounterRef.current.currentWorkout];
 
-      // Updates the repcount of the static instance
       repCounterInstance.update(bodyData);
-
-      if (typeof repUpdaterFn.current === "function") {
-        repUpdaterFn.current(repCounterInstance.reps);
+      if(repCounterInstance.workoutDetails.reps.value === repCounterInstance.workoutDetails.reps.limit) {
+        repCounterRef.current.currentWorkout += 1
       }
     }
   }, [bodyData, isFetchingBodyData]);

@@ -2,8 +2,15 @@ import RepCounter from "../repcounter";
 import BODY_PART from "../../mappers/BodyParts";
 import BODY_PART_DETAILS from "../../mappers/BodyPartDetails";
 import {isPartMissing} from "../util"
+import WorkoutDetails from "./classes/workoutDetails"
 
 export default class SquatCounter extends RepCounter {
+
+  constructor(rep_limit) {
+    super(rep_limit, 0)
+    this.title = "Squats"
+  }
+
   squatScore = (keypoints) => {
     let squat_score = 0;
     let lknee = keypoints[BODY_PART.KNEE_LEFT];
